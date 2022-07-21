@@ -10,6 +10,7 @@ local ElementKind = require(script.Parent.ElementKind)
 local SingleEventManager = require(script.Parent.SingleEventManager)
 local getDefaultInstanceProperty = require(script.Parent.getDefaultInstanceProperty)
 local Ref = require(script.Parent.PropMarkers.Ref)
+local Constant = require(script.Parent.PropMarkers.Constant)
 local Type = require(script.Parent.Type)
 local internalAssert = require(script.Parent.internalAssert)
 
@@ -69,6 +70,10 @@ end
 
 local function attachBinding(virtualNode, key, newBinding)
 	local function updateBoundProperty(newValue)
+		if newValue == Constant.SkipBindingUpdate then
+			return
+		end
+
 		local success, errorMessage = xpcall(function()
 			setRobloxInstanceProperty(virtualNode.hostObject, key, newValue)
 		end, identity)

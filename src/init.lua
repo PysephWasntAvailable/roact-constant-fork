@@ -30,6 +30,7 @@ local Roact = strict({
 	Change = require(script.PropMarkers.Change),
 	Children = require(script.PropMarkers.Children),
 	Event = require(script.PropMarkers.Event),
+	Constant = require(script.PropMarkers.Constant),
 	Ref = require(script.PropMarkers.Ref),
 
 	mount = robloxReconciler.mountVirtualTree,
